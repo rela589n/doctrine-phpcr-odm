@@ -1162,7 +1162,7 @@ class ClassMetadata implements ClassMetadataInterface
         return self::GENERATOR_TYPE_NONE === $this->idGenerator;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -1299,7 +1299,7 @@ class ClassMetadata implements ClassMetadataInterface
      *
      * @return int|string|null
      */
-    public function getTypeOfField($fieldName)
+    public function getTypeOfField($fieldName): string|null
     {
         return $this->mappings[$fieldName]['type'] ?? null;
     }
@@ -1317,7 +1317,7 @@ class ClassMetadata implements ClassMetadataInterface
         return $this->mappings[$fieldName]['targetDocument'];
     }
 
-    public function getAssociationMappedByTargetField($assocName)
+    public function getAssociationMappedByTargetField($assocName): string
     {
         throw new BadMethodCallException(sprintf(
             '%s not yet implemented in "%s"',
@@ -1326,7 +1326,7 @@ class ClassMetadata implements ClassMetadataInterface
         ));
     }
 
-    public function isAssociationInverseSide($assocName)
+    public function isAssociationInverseSide($assocName): bool
     {
         throw new BadMethodCallException(sprintf(
             '%s not yet implemented in "%s"',

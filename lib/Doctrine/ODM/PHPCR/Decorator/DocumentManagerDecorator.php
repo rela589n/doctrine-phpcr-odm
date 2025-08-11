@@ -14,6 +14,7 @@ use Doctrine\ODM\PHPCR\ReferrersCollection;
 use Doctrine\ODM\PHPCR\Translation\LocaleChooser\LocaleChooserInterface;
 use Doctrine\ODM\PHPCR\Translation\TranslationStrategy\TranslationStrategyInterface;
 use Doctrine\ODM\PHPCR\UnitOfWork;
+use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ObjectManagerDecorator;
 use PHPCR\NodeInterface;
 use PHPCR\PropertyType;
@@ -31,7 +32,7 @@ abstract class DocumentManagerDecorator extends ObjectManagerDecorator implement
     /**
      * @var DocumentManagerInterface
      */
-    protected $wrapped;
+    protected ObjectManager $wrapped;
 
     public function __construct(DocumentManagerInterface $wrapped)
     {

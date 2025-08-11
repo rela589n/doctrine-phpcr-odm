@@ -30,6 +30,7 @@ use Doctrine\ODM\PHPCR\Query\Query;
 use Doctrine\ODM\PHPCR\Translation\LocaleChooser\LocaleChooserInterface;
 use Doctrine\ODM\PHPCR\Translation\MissingTranslationException;
 use Doctrine\ODM\PHPCR\Translation\TranslationStrategy\TranslationStrategyInterface;
+use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use PHPCR\NodeInterface;
 use PHPCR\PropertyType;
@@ -51,7 +52,7 @@ interface DocumentManagerInterface extends ObjectManager
      *
      * @return PhpcrClassMetadata
      */
-    public function getClassMetadata(string $className);
+    public function getClassMetadata(string $className): ClassMetadata;
 
     /**
      * Add or replace a translation strategy.

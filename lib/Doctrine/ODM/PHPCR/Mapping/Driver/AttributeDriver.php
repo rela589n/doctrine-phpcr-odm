@@ -60,10 +60,11 @@ class AttributeDriver implements MappingDriver
     public function __construct(array $paths)
     {
         $this->reader = new AttributeReader();
+
         $this->addPaths($paths);
     }
 
-    public function isTransient($className)
+    public function isTransient(string $className): bool
     {
         $classAttributes = $this->reader->getClassAttributes(new \ReflectionClass($className));
 

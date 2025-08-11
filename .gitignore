@@ -8,3 +8,13 @@ jackrabbit/
 vendor/
 composer.lock
 /tests/jackrabbit-standalone-*.jar
+# Docker related
+docker-compose.yml
+README.docker.md
+# Test related
+/tests/phpunit_doctrine_dbal_green.xml
+/tests/README_GREEN_TESTS.md
+/tests/run_doctrine_dbal_green_tests.sh
+/tests/run_doctrine_dbal_tests.sh
+# IDE related
+.idea/

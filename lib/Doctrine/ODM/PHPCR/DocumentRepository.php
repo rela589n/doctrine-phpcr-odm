@@ -2,6 +2,7 @@
 
 namespace Doctrine\ODM\PHPCR;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Proxy\Proxy;
 use Doctrine\ODM\PHPCR\Exception\InvalidArgumentException;
@@ -67,7 +68,7 @@ class DocumentRepository implements ObjectRepository
     /**
      * Finds all documents in the repository.
      */
-    public function findAll(): Collection
+    public function findAll(): array
     {
         return $this->findBy([]);
     }
@@ -79,9 +80,9 @@ class DocumentRepository implements ObjectRepository
      * an InvalidArgumentException if certain values of the sorting or limiting details are
      * not supported.
      *
-     * @return Collection the objects matching the criteria
+     * @return array the objects matching the criteria
      */
-    public function findBy(array $criteria, ?array $orderBy = null, ?int $limit = null, ?int $offset = null): Collection
+    public function findBy(array $criteria, ?array $orderBy = null, ?int $limit = null, ?int $offset = null): array
     {
         $qb = $this->createQueryBuilder('a');
 
@@ -129,7 +130,7 @@ class DocumentRepository implements ObjectRepository
             }
         }
 
-        return $qb->getQuery()->execute();
+        return $qb->getQuery()->execute()->toArray();
     }
 
     /**
@@ -156,7 +157,7 @@ class DocumentRepository implements ObjectRepository
      */
     public function findOneBy(array $criteria): ?object
     {
-        $documents = $this->findBy($criteria, null, 1);
+        $documents = new ArrayCollection($this->findBy($criteria, null, 1));
 
         return $documents->isEmpty() ? null : $documents->first();
     }
